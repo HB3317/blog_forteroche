@@ -55,7 +55,7 @@
     </main>
     
     <footer>
-        <p>Copyright © Emilie Forteroche 2023 - Openclassrooms - <a href="index.php?action=admin">Admin</a> /* Connexion admin */</p>
+        <p>Copyright © Emilie Forteroche 2023 - Openclassrooms - <a href="index.php?action=admin">Admin</a></p>
     </footer>
 
 </body>

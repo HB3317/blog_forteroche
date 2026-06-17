@@ -178,7 +178,7 @@ class AdminController {
     }
 
     /**
-     * Affiche la page "Monitoring".
+     * Affiche la page "Tableau de bord".
      * @return void
      */
     public function monitoring(): void
@@ -192,7 +192,7 @@ class AdminController {
 
         $monitoringArray = $articleManager->getMonitoringArray($sort, $order);
 
-        $view = new View("Monitoring");
+        $view = new View("Tableau de bord");
 
         $view->render("monitoring", [
             'monitoringArray' => $monitoringArray
@@ -200,7 +200,7 @@ class AdminController {
     }
 
     /**
-     * supprime un commentaire.
+     * Supprime un commentaire puis redirige vers l'article associé.
      * @return void
      */
     public function deleteComment(): void
