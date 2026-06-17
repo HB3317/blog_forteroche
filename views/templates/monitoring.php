@@ -1,7 +1,8 @@
 <?php 
     /** 
-     * Affichage de la partie admin : liste des articles avec un bouton "modifier" pour chacun. 
-     * Et un formulaire pour ajouter un article. 
+     * Affichage du tableau de bord de l'administration, avec le tri des articles par titre, vues, commentaires et date.
+     * Les articles sont affichés dans un tableau avec les colonnes Titre, Vues, Commentaires et Date.
+     * Les colonnes sont triables par ordre croissant ou décroissant. 
      */
     $sort = $_GET['sort'] ?? 'date';
     $order = $_GET['order'] ?? 'DESC';

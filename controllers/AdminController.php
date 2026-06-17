@@ -183,9 +183,11 @@ class AdminController {
      */
     public function monitoring(): void
     {
+        $this->checkIfUserIsConnected();
+        
         $articleManager = new ArticleManager();
 
-        $sort = Utils::request('sort', 'date_creation');
+        $sort = Utils::request('sort', 'date');
         $order = Utils::request('order', 'DESC');
 
         $monitoringArray = $articleManager->getMonitoringArray($sort, $order);
@@ -203,6 +205,8 @@ class AdminController {
      */
     public function deleteComment(): void
     {
+        $this->checkIfUserIsConnected();
+        
         $id = Utils::request('id', -1);
         $articleId = Utils::request('articleId', -1);
 

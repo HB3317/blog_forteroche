@@ -104,6 +104,12 @@ class ArticleManager extends AbstractEntityManager
         $this->db->query($sql, ['id' => $id]);
     }
 
+    /**
+     * Récupère les données nécessaires au tableau de bord.
+     * @param string $sort : colonne utilisée pour le tri.
+     * @param string $order : ordre ASC ou DESC.
+     * @return array : tableau associatif des articles avec nombre de commentaires.
+     */
     public function getMonitoringArray(string $sort = 'date_creation', string $order = 'DESC'): array
     {
         $allowedSorts = [
