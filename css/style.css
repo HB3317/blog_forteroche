@@ -397,6 +397,12 @@ a.info {
     font-weight: bold;
 }
 
+.commentActions {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
 /** 
  * Footer global de la page.
  */

@@ -23,7 +23,8 @@
     <?php 
         if (empty($comments)) {
             echo '<p class="info">Aucun commentaire pour cet article.</p>';
-        } else {
+        } 
+        else {
             echo '<ul>';
             foreach ($comments as $comment) {
                 echo '<li>';
@@ -32,8 +33,13 @@
                 echo '      <h3 class="info">Le ' . Utils::convertDateToFrenchFormat($comment->getDateCreation()) . ", " . Utils::format($comment->getPseudo()) . ' a écrit :</h3>';
                 echo '      <p class="content">' . Utils::format($comment->getContent()) . '</p>';
                 echo '  </div>';
-                echo '</li>';
-            }               
+                if (isset($_SESSION['user'])) {
+                    echo '    <div class="commentActions">';
+                    echo '         <a class="submit" href="index.php?action=deleteComment&id=' . $comment->getId() . '&articleId=' . $article->getId() . '" ' . Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") . '>Supprimer</a>';
+                    echo '    </div>';
+                }
+                echo '</li>'; 
+            }         
             echo '</ul>';
         } 
     ?>

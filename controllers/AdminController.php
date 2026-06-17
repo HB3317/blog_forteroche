@@ -198,12 +198,21 @@ class AdminController {
     }
 
     /**
-     * Affichage de la page de gestion des commentaires.
+     * supprime un commentaire.
      * @return void
      */
-    public function adminComments(): void
+    public function deleteComment(): void
     {
-        $view = new View("gestion des commentaires");
-        $view->render("adminComments");
+        $id = Utils::request('id', -1);
+        $articleId = Utils::request('articleId', -1);
+
+        $commentManager = new CommentManager();
+
+        $comment = $commentManager->getCommentById($id);
+
+        if ($comment) {
+            $commentManager->deleteComment($comment);
+        }
+        Utils::redirect('showArticle&id=' . $articleId);
     }
 }
