@@ -14,12 +14,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emilie Forteroche</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css?v=999">
 </head>
 
 <body>
     <header>
-        <nav>
+        <nav class="mainMenu">
             <a href="index.php">Articles</a>
             <a href="index.php?action=apropos">À propos</a>
             <?php 
@@ -27,8 +27,20 @@
                 if (isset($_SESSION['user'])) {
                     echo '<a href="index.php?action=disconnectUser">Déconnexion</a>';
                 }
-                ?>
+            ?>
         </nav>
+            <?php
+            if (isset($_SESSION['user'])) {
+            ?>
+                <nav class="adminMenu">
+                    <a href="index.php?action=admin">Édition des articles</a>
+                    <a href="index.php?action=monitoring">Monitoring</a>
+                    <a href="index.php?action=adminComments">Commentaires</a>
+                </nav>
+            <?php
+            }
+            ?>
+            
         <h1>Emilie Forteroche</h1>
     </header>
 
