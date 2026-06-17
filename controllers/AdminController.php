@@ -178,13 +178,20 @@ class AdminController {
     }
 
     /**
-     * Affichage de la page de monitoring.
+     * Affiche la page "Monitoring".
      * @return void
      */
     public function monitoring(): void
     {
+        $articleManager = new ArticleManager();
+
+        $monitoringArray = $articleManager->getMonitoringArray();
+
         $view = new View("Monitoring");
-        $view->render("monitoring");
+
+        $view->render("monitoring", [
+            'monitoringArray' => $monitoringArray
+        ]);
     }
 
     /**

@@ -103,4 +103,22 @@ class ArticleManager extends AbstractEntityManager
         $sql = "UPDATE article SET views = views + 1 WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
     }
+
+    public function getMonitoringArray(): array
+    {
+        $sql = "SELECT article.*, COUNT(comment.id) AS comments_count
+            FROM article
+            LEFT JOIN comment ON comment.id_article = article.id
+            GROUP BY article.id";
+
+        $result = $this->db->query($sql);
+        
+        $articles = [];
+
+        while ($row = $result->fetch()) {
+            $articles[] = $row;
+        }
+
+        return $articles;
+    }
 }

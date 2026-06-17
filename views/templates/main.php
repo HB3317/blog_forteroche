@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emilie Forteroche</title>
-    <link rel="stylesheet" href="./css/style.css?v=999">
+    <link rel="stylesheet" href="./css/style.css?v=4">
 </head>
 
 <body>
@@ -33,9 +33,20 @@
             if (isset($_SESSION['user'])) {
             ?>
                 <nav class="adminMenu">
-                    <a href="index.php?action=admin">Édition des articles</a>
-                    <a href="index.php?action=monitoring">Monitoring</a>
-                    <a href="index.php?action=adminComments">Commentaires</a>
+                    <a class="<?= ($_GET['action'] ?? 'admin') === 'admin' ? 'active' : '' ?>"
+                    href="index.php?action=admin">
+                        Édition des articles
+                    </a>
+
+                    <a class="<?= ($_GET['action'] ?? '') === 'monitoring' ? 'active' : '' ?>"
+                    href="index.php?action=monitoring">
+                        Monitoring
+                    </a>
+
+                    <a class="<?= ($_GET['action'] ?? '') === 'adminComments' ? 'active' : '' ?>"
+                    href="index.php?action=adminComments">
+                        Commentaires
+                    </a>
                 </nav>
             <?php
             }

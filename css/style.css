@@ -22,8 +22,9 @@
     --commentPaleColor: #99a140;
     --commentColor: #255E33;
     --adminMenuBackgroundColor: #99a140;
-    --adminMenuHighlightColor: #8a9530;
+    --adminMenuHighlightColor: #626b1e;
     --tableAlternateRowColor: #e0e0e0;
+    --adminMenuhoverColor: #626923;
 }
 
 /**
@@ -171,6 +172,16 @@ header > nav.adminMenu > a {
     text-transform: uppercase;
     font-size: 0.9em;
     margin-right: 20px;
+    padding: 8px 10px;
+}
+
+header > nav.adminMenu > a.active {
+    background-color: var(--adminMenuHighlightColor);
+    font-weight: bold;
+}
+
+header > nav.adminMenu > a:hover {
+    background-color: var(--adminMenuhoverColor);
 }
 
 /**
@@ -352,6 +363,29 @@ a.info {
 .articleLine > div {
     padding: 20px;
     border: 1px solid var(--backgroundColor);
+}
+
+.monitoringLine {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1.5fr 2fr;
+}
+
+.monitoringLine > div {
+    padding: 20px;
+    border: 1px solid var(--backgroundColor);
+    display: flex;
+    align-items: center;
+}
+
+.monitoringViews,
+.monitoringComments,
+.monitoringDate {
+    justify-content: center;
+}
+
+.monitoringHeader {
+    background-color: var(--adminMenuHighlightColor);
+    font-weight: bold;
 }
 
 /** 
