@@ -7,7 +7,7 @@
     $order = $_GET['order'] ?? 'DESC';
 ?>
 
-<h2>Monitoring</h2>
+<h2>Tableau de bord</h2>
 
 <div class="adminArticle">
 

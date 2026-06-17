@@ -40,12 +40,7 @@
 
                     <a class="<?= ($_GET['action'] ?? '') === 'monitoring' ? 'active' : '' ?>"
                     href="index.php?action=monitoring">
-                        Monitoring
-                    </a>
-
-                    <a class="<?= ($_GET['action'] ?? '') === 'adminComments' ? 'active' : '' ?>"
-                    href="index.php?action=adminComments">
-                        Commentaires
+                        Tableau de bord
                     </a>
                 </nav>
             <?php
