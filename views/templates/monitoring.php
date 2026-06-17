@@ -47,7 +47,7 @@
             <div class="monitoringTitle"><?= $article['title'] ?></div>
             <div class="monitoringViews"><?= $article['views'] ?></div>
             <div class="monitoringComments"><?= $article['comments_count'] ?></div>
-            <div class="monitoringDate"><?= $article['date_creation'] ?></div>
+            <div class="monitoringDate"><?= Utils::convertDateToFrenchFormat(new DateTime($article['date_creation'])) ?></div>
         </div>
     <?php } ?>
 

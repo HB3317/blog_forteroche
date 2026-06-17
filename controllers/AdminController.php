@@ -190,7 +190,19 @@ class AdminController {
         $sort = Utils::request('sort', 'date');
         $order = Utils::request('order', 'DESC');
 
-        $monitoringArray = $articleManager->getMonitoringArray($sort, $order);
+        $monitoringArray = $articleManager->getMonitoringArray();
+        usort($monitoringArray, function ($a, $b) use ($sort, $order) {
+
+        $result = match ($sort) {
+                'title' => strcmp($a['title'], $b['title']),
+                'views' => $a['views'] <=> $b['views'],
+                'comments' => $a['comments_count'] <=> $b['comments_count'],
+                'date' => strcmp($a['date_creation'], $b['date_creation']),
+                default => 0
+            };
+
+            return $order === 'ASC' ? $result : -$result;
+        });
 
         $view = new View("Tableau de bord");
 
