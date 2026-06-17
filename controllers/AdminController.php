@@ -176,4 +176,24 @@ class AdminController {
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
     }
+
+    /**
+     * Affichage de la page de monitoring.
+     * @return void
+     */
+    public function monitoring(): void
+    {
+        $view = new View("Monitoring");
+        $view->render("monitoring");
+    }
+
+    /**
+     * Affichage de la page de gestion des commentaires.
+     * @return void
+     */
+    public function adminComments(): void
+    {
+        $view = new View("gestion des commentaires");
+        $view->render("adminComments");
+    }
 }
