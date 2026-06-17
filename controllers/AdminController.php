@@ -185,7 +185,10 @@ class AdminController {
     {
         $articleManager = new ArticleManager();
 
-        $monitoringArray = $articleManager->getMonitoringArray();
+        $sort = Utils::request('sort', 'date_creation');
+        $order = Utils::request('order', 'DESC');
+
+        $monitoringArray = $articleManager->getMonitoringArray($sort, $order);
 
         $view = new View("Monitoring");
 

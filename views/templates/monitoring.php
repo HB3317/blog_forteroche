@@ -10,11 +10,26 @@
 <div class="adminArticle">
 
     <div class="articleLine monitoringLine monitoringHeader">
-        <div class="monitoringTitle">Titre</div>
-        <div class="monitoringViews">Vues</div>
-        <div class="monitoringComments">Commentaires</div>
-        <div class="monitoringDate">Date</div>
+    <div class="monitoringTitle">
+        <a href="index.php?action=monitoring&sort=title&order=ASC">Titre ▲</a>
+        <a href="index.php?action=monitoring&sort=title&order=DESC">▼</a>
     </div>
+
+    <div class="monitoringViews">
+        <a href="index.php?action=monitoring&sort=views&order=ASC">Vues ▲</a>
+        <a href="index.php?action=monitoring&sort=views&order=DESC">▼</a>
+    </div>
+
+    <div class="monitoringComments">
+        <a href="index.php?action=monitoring&sort=comments&order=ASC">Commentaires ▲</a>
+        <a href="index.php?action=monitoring&sort=comments&order=DESC">▼</a>
+    </div>
+
+    <div class="monitoringDate">
+        <a href="index.php?action=monitoring&sort=date&order=ASC">Date ▲</a>
+        <a href="index.php?action=monitoring&sort=date&order=DESC">▼</a>
+    </div>
+</div>
 
     <?php foreach ($monitoringArray as $article) { ?>
         <div class="articleLine monitoringLine">

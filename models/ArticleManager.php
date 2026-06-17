@@ -104,15 +104,28 @@ class ArticleManager extends AbstractEntityManager
         $this->db->query($sql, ['id' => $id]);
     }
 
-    public function getMonitoringArray(): array
+    public function getMonitoringArray(string $sort = 'date_creation', string $order = 'DESC'): array
     {
+        $allowedSorts = [
+        'title' => 'article.title',
+        'views' => 'article.views',
+        'comments' => 'comments_count',
+        'date' => 'article.date_creation'
+        ];
+
+        $allowedOrders = ['ASC', 'DESC'];
+
+        $sortSql = $allowedSorts[$sort] ?? 'article.date_creation';
+        $orderSql = in_array(strtoupper($order), $allowedOrders) ? strtoupper($order) : 'DESC';
+
         $sql = "SELECT article.*, COUNT(comment.id) AS comments_count
             FROM article
             LEFT JOIN comment ON comment.id_article = article.id
-            GROUP BY article.id";
+            GROUP BY article.id
+            ORDER BY $sortSql $orderSql";
 
         $result = $this->db->query($sql);
-        
+
         $articles = [];
 
         while ($row = $result->fetch()) {

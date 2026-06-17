@@ -23,7 +23,7 @@
     --commentColor: #255E33;
     --adminMenuBackgroundColor: #99a140;
     --adminMenuHighlightColor: #626b1e;
-    --tableAlternateRowColor: #e0e0e0;
+    --tableAlternateRowColor: #a7be7a;
     --adminMenuhoverColor: #626923;
 }
 
@@ -375,6 +375,10 @@ a.info {
     border: 1px solid var(--backgroundColor);
     display: flex;
     align-items: center;
+}
+
+.monitoringLine:nth-child(odd):not(.monitoringHeader) {
+    background-color: var(--tableAlternateRowColor);
 }
 
 .monitoringViews,
