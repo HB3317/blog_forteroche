@@ -392,6 +392,11 @@ a.info {
     font-weight: bold;
 }
 
+.sortActive {
+    color: black;
+    font-weight: bold;
+}
+
 /** 
  * Footer global de la page.
  */
