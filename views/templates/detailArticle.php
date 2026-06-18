@@ -2,6 +2,7 @@
     /**
      * Ce template affiche un article et ses commentaires.
      * Il affiche également un formulaire pour ajouter un commentaire.
+     * Si un utilisateur est connecté, il peut supprimer des commentaires.
      */
 ?>
 

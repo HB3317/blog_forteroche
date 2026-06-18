@@ -183,29 +183,32 @@ class AdminController {
      */
     public function monitoring(): void
     {
+        // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
-        
-        $articleManager = new ArticleManager();
 
+        // On récupère les paramètres de tri et on applique des valeurs par défaut.
         $sort = Utils::request('sort', 'date');
         $order = Utils::request('order', 'DESC');
-
+        
+        // On récupère les données nécessaires au tableau de bord.
+        $articleManager = new ArticleManager();
         $monitoringArray = $articleManager->getMonitoringArray();
-        usort($monitoringArray, function ($a, $b) use ($sort, $order) {
 
-        $result = match ($sort) {
-                'title' => strcmp($a['title'], $b['title']),
-                'views' => $a['views'] <=> $b['views'],
-                'comments' => $a['comments_count'] <=> $b['comments_count'],
-                'date' => strcmp($a['date_creation'], $b['date_creation']),
-                default => 0
+        // On trie le tableau en fonction des paramètres de tri.
+        usort($monitoringArray, function ($a, $b) use ($sort, $order) {
+            $result = match ($sort) {
+                    'title' => strcmp($a['title'], $b['title']),
+                    'views' => $a['views'] <=> $b['views'],
+                    'comments' => $a['comments_count'] <=> $b['comments_count'],
+                    'date' => strcmp($a['date_creation'], $b['date_creation']),
+                    default => 0
             };
 
+            // On inverse le résultat si l'ordre est décroissant.
             return $order === 'ASC' ? $result : -$result;
         });
 
         $view = new View("Tableau de bord");
-
         $view->render("monitoring", [
             'monitoringArray' => $monitoringArray
         ]);
@@ -217,18 +220,23 @@ class AdminController {
      */
     public function deleteComment(): void
     {
+        // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
         
-        $id = Utils::request('id', -1);
+        // On récupère l'id du commentaire et l'id de l'article associé.
+        $commentId = Utils::request('id', -1);
         $articleId = Utils::request('articleId', -1);
 
+        // On récupère le commentaire.
         $commentManager = new CommentManager();
+        $comment = $commentManager->getCommentById($commentId);
 
-        $comment = $commentManager->getCommentById($id);
-
+        // On supprime le commentaire s'il existe.
         if ($comment) {
             $commentManager->deleteComment($comment);
         }
+
+        // On redirige vers l'article associé.
         Utils::redirect('showArticle&id=' . $articleId);
     }
 }

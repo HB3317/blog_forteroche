@@ -30,7 +30,8 @@
             ?>
         </nav>
             <?php
-            if (isset($_SESSION['user'])) {
+                // Si on est connecté, on affiche le menu d'administration.
+                if (isset($_SESSION['user'])) {
             ?>
                 <nav class="adminMenu">
                     <a class="<?= ($_GET['action'] ?? 'admin') === 'admin' ? 'active' : '' ?>"

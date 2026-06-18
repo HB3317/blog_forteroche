@@ -106,20 +106,20 @@ class ArticleManager extends AbstractEntityManager
 
     /**
      * Récupère les données nécessaires au tableau de bord.
-     * @param string $sort : colonne utilisée pour le tri.
-     * @param string $order : ordre ASC ou DESC.
      * @return array : tableau associatif des articles avec nombre de commentaires.
      */
     public function getMonitoringArray(): array
     {
-        
+        /**  
+        * On récupère les articles avec le nombre de commentaires associés.
+        * On fait un LEFT JOIN pour récupérer tous les articles, même ceux sans commentaires.
+        */
         $sql = "SELECT article.*, COUNT(comment.id) AS comments_count
             FROM article
             LEFT JOIN comment ON comment.id_article = article.id
             GROUP BY article.id";
 
         $result = $this->db->query($sql);
-
         $articles = [];
 
         while ($row = $result->fetch()) {
