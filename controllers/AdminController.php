@@ -197,15 +197,20 @@ class AdminController {
         // On trie le tableau en fonction des paramètres de tri.
         usort($monitoringArray, function ($a, $b) use ($sort, $order) {
             $result = match ($sort) {
-                    'title' => strcmp($a['title'], $b['title']),
+                    'title' => $a['title'] <=> $b['title'],
                     'views' => $a['views'] <=> $b['views'],
                     'comments' => $a['comments_count'] <=> $b['comments_count'],
-                    'date' => strcmp($a['date_creation'], $b['date_creation']),
+                    'date' => $a['date_creation'] <=> $b['date_creation'],
                     default => 0
             };
 
             // On inverse le résultat si l'ordre est décroissant.
-            return $order === 'ASC' ? $result : -$result;
+            if ($order === 'ASC') {
+                return $result;
+            } 
+            else {
+                return -$result;
+            }
         });
 
         $view = new View("Tableau de bord");
